@@ -23,14 +23,47 @@
         tap-ms = <10>;
     };
 
-    workspace_nav: workspace_nav {
+    app_nav: app_nav {
         compatible = "zmk,input-processor-keybind";
         #input-processor-cells = <0>;
 
         track_remainders;
 
-        bindings = <&kp TAB>,
-                   <&kp LS(TAB)>,
+        /*
+         * Right Alt is held by the layer/modifier macro.
+         *
+         * Physical left  -> Shift+Tab
+         * Physical right -> Tab
+         */
+        bindings = <&kp LS(TAB)>,
+                   <&kp TAB>,
+                   <&none>,
+                   <&none>;
+
+        tick = <40>;
+        wait-ms = <0>;
+        tap-ms = <10>;
+    };
+
+    context_nav: context_nav {
+        compatible = "zmk,input-processor-keybind";
+        #input-processor-cells = <0>;
+
+        track_remainders;
+
+        /*
+         * Left Ctrl is held by the layer/modifier macro.
+         *
+         * Browser:
+         *   Ctrl+PageUp   -> previous tab
+         *   Ctrl+PageDown -> next tab
+         *
+         * Excel:
+         *   Ctrl+PageUp   -> previous worksheet
+         *   Ctrl+PageDown -> next worksheet
+         */
+        bindings = <&kp PAGE_UP>,
+                   <&kp PAGE_DOWN>,
                    <&none>,
                    <&none>;
 
@@ -47,6 +80,25 @@
             quick_tap_ms = <0>;
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
+        };
+
+        lm: lm {
+            compatible = "zmk,behavior-macro-two-param";
+            wait-ms = <0>;
+            tap-ms = <0>;
+            #binding-cells = <2>;
+
+            bindings
+                = <&macro_param_1to1>
+                , <&macro_press &mo MACRO_PLACEHOLDER>
+                , <&macro_param_2to1>
+                , <&macro_press &kp MACRO_PLACEHOLDER>
+                , <&macro_pause_for_release>
+                , <&macro_param_2to1>
+                , <&macro_release &kp MACRO_PLACEHOLDER>
+                , <&macro_param_1to1>
+                , <&macro_release &mo MACRO_PLACEHOLDER>
+                ;
         };
     };
 
@@ -65,10 +117,10 @@
         default_layer {
             display-name = "Base";
             bindings = <
-&kp Q    &kp W  &kp E      &kp R           &lt 4 T      &kp Y        &kp U          &kp I          &kp O    &kp P
+&kp Q    &kp W  &kp E      &kp R           &kp T        &kp Y        &kp U          &kp I          &kp O    &kp P
 &kp A    &kp S  &kp D      &kp F           &kp G        &kp H        &kp J          &kp K          &kp L    &kp SEMICOLON
 &lt 3 Z  &kp X  &kp C      &kp V           &kp B        &kp N        &kp M          &kp COMMA      &kp DOT  &lt 3 SLASH
-                &kp LCTRL  &kp LEFT_SHIFT  &lt 1 SPACE  &lt 2 ENTER  &kp BACKSPACE  &kp RIGHT_ALT
+                &lm 5 LCTRL  &kp LEFT_SHIFT  &lt 1 SPACE  &lt 2 ENTER  &kp BACKSPACE  &lm 4 RIGHT_ALT
             >;
         };
 
@@ -102,8 +154,18 @@
             >;
         };
 
-        workspace_layer {
-            display-name = "Workspace";
+        app_nav_layer {
+            display-name = "AppNav";
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans  &trans  &trans  &trans  &trans
+            >;
+        };
+
+        context_nav_layer {
+            display-name = "ContextNav";
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
@@ -124,8 +186,13 @@
         input-processors = <&text_nav>;
     };
 
-    workspace_navigation {
+    app_navigation {
         layers = <4>;
-        input-processors = <&workspace_nav>;
+        input-processors = <&app_nav>;
+    };
+
+    context_navigation {
+        layers = <5>;
+        input-processors = <&context_nav>;
     };
 };
