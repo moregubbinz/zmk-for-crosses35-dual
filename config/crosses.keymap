@@ -95,8 +95,6 @@
 
     text_navigation {
         layers = <2>;
-        input-processors =
-            <&zip_xy_scaler 1 16>,
-            <&text_nav>;
+        input-processors = <&text_nav>;
     };
 };
