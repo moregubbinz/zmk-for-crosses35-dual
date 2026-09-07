@@ -7,6 +7,22 @@
 / {
     chosen { zmk,physical-layout = &gggw_crosses_36_layout; };
 
+    text_nav: text_nav {
+        compatible = "zmk,input-processor-keybind";
+        #input-processor-cells = <0>;
+
+        track_remainders;
+
+        bindings = <&kp LC(RIGHT_ARROW)>,
+                   <&kp LC(LEFT_ARROW)>,
+                   <&kp DOWN_ARROW>,
+                   <&kp UP_ARROW>;
+
+        tick = <40>;
+        wait-ms = <0>;
+        tap-ms = <10>;
+    };
+
     behaviors {
         as: auto_shift {
             compatible = "zmk,behavior-hold-tap";
