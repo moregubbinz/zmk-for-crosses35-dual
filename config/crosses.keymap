@@ -87,3 +87,14 @@
         };
     };
 };
+
+&trackball_peripheral_listener {
+    input-processors =
+        <&zip_xy_to_scroll_mapper>,
+        <&zip_scroll_scaler 1 2>;
+
+    text_navigation {
+        layers = <2>;
+        input-processors = <&text_nav>;
+    };
+};
