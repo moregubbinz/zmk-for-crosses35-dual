@@ -13,8 +13,8 @@
 
         track_remainders;
 
-        bindings = <&kp LC(RIGHT_ARROW)>,
-                   <&kp LC(LEFT_ARROW)>,
+        bindings = <&kp LC(LEFT_ARROW)>,
+                   <&kp LC(RIGHT_ARROW)>,
                    <&kp DOWN_ARROW>,
                    <&kp UP_ARROW>;
 
@@ -95,6 +95,8 @@
 
     text_navigation {
         layers = <2>;
-        input-processors = <&text_nav>;
+        input-processors =
+            <&zip_xy_scaler 1 16>,
+            <&text_nav>;
     };
 };
