@@ -29,12 +29,6 @@
 
         track_remainders;
 
-        /*
-         * Right Alt is held by the layer/modifier macro.
-         *
-         * Physical left  -> Shift+Tab
-         * Physical right -> Tab
-         */
         bindings = <&kp LS(TAB)>,
                    <&kp TAB>,
                    <&none>,
@@ -51,23 +45,28 @@
 
         track_remainders;
 
-        /*
-         * Left Ctrl is held by the layer/modifier macro.
-         *
-         * Browser:
-         *   Ctrl+PageUp   -> previous tab
-         *   Ctrl+PageDown -> next tab
-         *
-         * Excel:
-         *   Ctrl+PageUp   -> previous worksheet
-         *   Ctrl+PageDown -> next worksheet
-         */
         bindings = <&kp PAGE_UP>,
                    <&kp PAGE_DOWN>,
                    <&none>,
                    <&none>;
 
         tick = <40>;
+        wait-ms = <0>;
+        tap-ms = <10>;
+    };
+
+    volume_nav: volume_nav {
+        compatible = "zmk,input-processor-keybind";
+        #input-processor-cells = <0>;
+
+        track_remainders;
+
+        bindings = <&none>,
+                   <&none>,
+                   <&kp C_VOL_DN>,
+                   <&kp C_VOL_UP>;
+
+        tick = <80>;
         wait-ms = <0>;
         tap-ms = <10>;
     };
@@ -120,7 +119,7 @@
 &kp Q    &kp W  &kp E      &kp R           &kp T        &kp Y        &kp U          &kp I          &kp O    &kp P
 &kp A    &kp S  &kp D      &kp F           &kp G        &kp H        &kp J          &kp K          &kp L    &kp SEMICOLON
 &lt 3 Z  &kp X  &kp C      &kp V           &kp B        &kp N        &kp M          &kp COMMA      &kp DOT  &lt 3 SLASH
-                &lm 5 LCTRL  &kp LEFT_SHIFT  &lt 1 SPACE  &lt 2 ENTER  &kp BACKSPACE  &lm 4 RIGHT_ALT
+                &lm 5 LCTRL  &kp LEFT_SHIFT  &lt 1 SPACE  &lt 2 ENTER  &lm 6 LWIN  &lm 4 RIGHT_ALT
             >;
         };
 
@@ -173,6 +172,16 @@
                         &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
+
+        volume_nav_layer {
+            display-name = "VolumeNav";
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans  &trans  &trans  &trans  &trans
+            >;
+        };
     };
 };
 
@@ -194,5 +203,10 @@
     context_navigation {
         layers = <5>;
         input-processors = <&context_nav>;
+    };
+
+    volume_navigation {
+        layers = <6>;
+        input-processors = <&volume_nav>;
     };
 };
