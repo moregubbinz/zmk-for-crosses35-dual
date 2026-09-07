@@ -23,6 +23,22 @@
         tap-ms = <10>;
     };
 
+    workspace_nav: workspace_nav {
+        compatible = "zmk,input-processor-keybind";
+        #input-processor-cells = <0>;
+
+        track_remainders;
+
+        bindings = <&kp TAB>,
+                   <&kp LS(TAB)>,
+                   <&none>,
+                   <&none>;
+
+        tick = <40>;
+        wait-ms = <0>;
+        tap-ms = <10>;
+    };
+
     behaviors {
         as: auto_shift {
             compatible = "zmk,behavior-hold-tap";
@@ -85,6 +101,16 @@
                             &mkp MCLK     &mkp LCLK  &mkp RCLK   &mkp RCLK   &mkp LCLK  &mkp MCLK
             >;
         };
+
+        workspace_layer {
+            display-name = "Workspace";
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans  &trans  &trans  &trans  &trans
+            >;
+        };
     };
 };
 
@@ -96,5 +122,10 @@
     text_navigation {
         layers = <2>;
         input-processors = <&text_nav>;
+    };
+
+    workspace_navigation {
+        layers = <4>;
+        input-processors = <&workspace_nav>;
     };
 };
