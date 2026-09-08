@@ -67,9 +67,9 @@
             <&kp C_VOL_DN>,
             <&kp C_VOL_UP>;
 
-        tick = <80>;
+        tick = <40>;
         wait-ms = <0>;
-        tap-ms = <10>;
+        tap-ms = <5>;
     };
 
     behaviors {
