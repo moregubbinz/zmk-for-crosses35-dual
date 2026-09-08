@@ -4,4 +4,4 @@
 
 ### Default Firmware Keymap
 
-![Keymap](https://raw.githubusercontent.com/moregubbinz/zmk-for-crosses35-dual/main/keymap-drawer/crosses.svg)
+![Keymap](./keymap-drawer/crosses.svg) 
