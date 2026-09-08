@@ -1,4 +1,6 @@
-layout: {zmk_keyboard: crosses, layout_name: gggw_crosses_36_layout}
+layout:
+  dts_layout: keymap-drawer/crosses-layout.dtsi
+  layout_name: crosses
 layers:
   Base:
   - Q
