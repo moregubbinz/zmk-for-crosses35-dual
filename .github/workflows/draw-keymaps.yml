@@ -21,3 +21,4 @@ jobs:
       config_path: "keymap_drawer.config.yaml"
       output_folder: "keymap-drawer"
       west_config_path: "config"
+      draw_args: "crosses:'--dts-layout config/crosses-layouts.dtsi --layout-name gggw_crosses_36_layout'"
