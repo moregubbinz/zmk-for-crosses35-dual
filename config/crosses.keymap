@@ -14,10 +14,10 @@
         track_remainders;
 
         bindings =
-            <&kp LC(LEFT_ARROW)>,
             <&kp LC(RIGHT_ARROW)>,
-            <&kp DOWN_ARROW>,
-            <&kp UP_ARROW>;
+            <&kp LC(LEFT_ARROW)>,
+            <&kp UP_ARROW>,
+            <&kp DOWN_ARROW>;
 
         tick = <40>;
         wait-ms = <0>;
@@ -30,8 +30,8 @@
         track_remainders;
 
         bindings =
-            <&kp LS(TAB)>,
             <&kp TAB>,
+            <&kp LS(TAB)>,
             <&none>,
             <&none>;
 
@@ -46,8 +46,8 @@
         track_remainders;
 
         bindings =
-            <&kp LC(PAGE_UP)>,
             <&kp LC(PAGE_DOWN)>,
+            <&kp LC(PAGE_UP)>,
             <&none>,
             <&none>;
 
