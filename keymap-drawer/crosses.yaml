@@ -1,7 +1,7 @@
 layout: {zmk_keyboard: crosses, layout_name: gggw_crosses_36_layout}
 layers:
   Base:
-  - Q 
+  - Q
   - W
   - E
   - R
