@@ -19,7 +19,7 @@
             <&kp UP_ARROW>,
             <&kp DOWN_ARROW>;
 
-        tick = <40>;
+        tick = <90>;
         wait-ms = <0>;
         tap-ms = <10>;
     };
@@ -35,7 +35,7 @@
             <&none>,
             <&none>;
 
-        tick = <70>;
+        tick = <90>;
         wait-ms = <0>;
         tap-ms = <10>;
     };
@@ -51,7 +51,7 @@
             <&none>,
             <&none>;
 
-        tick = <60>;
+        tick = <90>;
         wait-ms = <0>;
         tap-ms = <10>;
     };
@@ -67,7 +67,7 @@
             <&kp C_VOL_DN>,
             <&kp C_VOL_UP>;
 
-        tick = <40>;
+        tick = <45>;
         wait-ms = <0>;
         tap-ms = <5>;
     };
@@ -237,6 +237,7 @@
 
 &trackball_central_listener {
     input-processors =
+        <&zip_temp_layer 1 400>,
         <&zip_ble_report_rate_limit>;
 
     text_navigation {
