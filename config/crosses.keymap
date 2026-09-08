@@ -35,7 +35,7 @@
             <&none>,
             <&none>;
 
-        tick = <40>;
+        tick = <70>;
         wait-ms = <0>;
         tap-ms = <10>;
     };
@@ -51,7 +51,7 @@
             <&none>,
             <&none>;
 
-        tick = <40>;
+        tick = <60>;
         wait-ms = <0>;
         tap-ms = <10>;
     };
