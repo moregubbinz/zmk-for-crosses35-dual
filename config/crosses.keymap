@@ -418,7 +418,7 @@
  */
 &trackball_peripheral_listener {
     input-processors =
-        <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
+        <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
         <&zip_temp_layer 1 1000>;
 
     volume_navigation {
