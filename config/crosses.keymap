@@ -133,20 +133,20 @@
         default_layer {
             display-name = "Base";
             bindings = <
-&kp Q                       &kp W                     &kp E                     &kp R                  &lt 5 T    &kp Y      &kp U                          &kp I                      &kp O                      &kp P
-&Tap_Pref_200 LEFT_SHIFT A  &Tap_Pref_200 LEFT_WIN S  &Tap_Pref_275 LEFT_ALT D  &Tap_Pref_200 LCTRL F  &lt 6 G    &kp H      &Tap_Pref_200 RIGHT_CONTROL J  &Tap_Pref_275 RIGHT_ALT K  &Tap_Pref_200 RIGHT_WIN L  &Tap_Pref_200 RIGHT_SHIFT SQT
-&lt 1 Z                     &kp X                     &kp C                     &kp V                  &kp B      &kp N      &kp M                          &kp COMMA                  &kp DOT                    &kp FSLH
-                                                      &kp TILDE                 &lt 2 SPACE            &lt 3 TAB  &kp ENTER  &lt 4 BACKSPACE                &kp DEL
+&kp Q                       &kp W                     &kp E                     &kp R                  &lt 6 T    &kp Y      &kp U                          &kp I                      &kp O                      &kp P
+&Tap_Pref_200 LEFT_SHIFT A  &Tap_Pref_200 LEFT_WIN S  &Tap_Pref_275 LEFT_ALT D  &Tap_Pref_200 LCTRL F  &lt 7 G    &kp H      &Tap_Pref_200 RIGHT_CONTROL J  &Tap_Pref_275 RIGHT_ALT K  &Tap_Pref_200 RIGHT_WIN L  &Tap_Pref_200 RIGHT_SHIFT SQT
+&kp Z                       &kp X                     &kp C                     &kp V                  &lt 1 B    &kp N      &kp M                          &kp COMMA                  &kp DOT                    &kp FSLH
+                                                      &kp TILDE                 &lt 2 SPACE            &lt 3 TAB  &lt 5 RET  &lt 4 BACKSPACE                &kp DEL
             >;
         };
 
         Mouse_Layer {
             display-name = "Lower";
             bindings = <
-&none   &none      &mkp MB4   &mkp MB5   &none          &none      &none      &none      &none   &none
-&trans  &trans     &trans     &trans     &kp LS(LG(S))  &none      &trans     &trans     &trans  &trans
-&none   &kp LC(X)  &kp LC(C)  &kp LC(V)  &kp LS(LG(T))  &none      &none      &none      &none   &none
-                   &mkp MCLK  &mkp LCLK  &mkp RCLK      &mkp RCLK  &mkp LCLK  &mkp MCLK
+&none   &none   &none   &none   &none  &kp BACKSPACE  &mkp MB4         &mkp MB4           &kp LS(LG(S))  &kp RS(LG(T))
+&trans  &trans  &trans  &trans  &none  &kp RET        &mkp LCLK        &mkp RCLK          &mkp MCLK      &none
+&none   &none   &none   &none   &none  &kp RC(X)      &kp RC(C)        &kp RC(V)          &none          &kp LS(LC(A))
+                &none   &none   &none  &kp RIGHT_ALT  &kp RIGHT_SHIFT  &kp RIGHT_CONTROL
             >;
         };
 
@@ -160,23 +160,33 @@
             >;
         };
 
-        Num+_Layer {
+        Num_Layer {
             display-name = "Mouse";
             bindings = <
-&none  &kp GRAVE  &none      &kp LPAR  &kp RPAR  &kp PLUS   &kp N7   &kp N8  &kp N9  &kp STAR
-&none  &kp PIPE   &none      &kp LBKT  &kp RBKT  &kp MINUS  &kp N4   &kp N5  &kp N6  &kp FSLH
-&none  &none      &kp CARET  &kp LT    &kp GT    &kp EQUAL  &kp N1   &kp N2  &kp N3  &kp MINUS
-                  &none      &none     &none     &kp RET    &kp DOT  &kp N0
+&none  &none  &none  &none  &none  &kp EQUAL  &kp N7  &kp N8   &kp N9  &kp MINUS
+&none  &none  &none  &none  &none  &kp MINUS  &kp N4  &kp N5   &kp N6  &kp FSLH
+&none  &none  &none  &none  &none  &kp PLUS   &kp N1  &kp N2   &kp N3  &kp STAR
+              &none  &none  &none  &kp RET    &kp N0  &kp DOT
+            >;
+        };
+
+        Bracket_Layer {
+            display-name = "Mouse";
+            bindings = <
+&none  &none  &kp LPAR  &kp RPAR  &kp GRAVE  &none  &none  &none  &none  &none
+&none  &none  &kp LBKT  &kp RBKT  &kp PIPE   &none  &none  &none  &none  &none
+&none  &none  &kp LT    &kp GT    &kp CARET  &none  &none  &none  &none  &none
+              &none     &none     &none      &none  &none  &none
             >;
         };
 
         Func_BT_Layer {
             display-name = "FuncBT";
             bindings = <
-&kp F9  &kp F10  &kp F11  &kp F12  &trans  &out OUT_TOG  &trans        &trans        &trans        &bt BT_CLR
-&kp F5  &kp F6   &kp F7   &kp F8   &trans  &bt BT_PRV    &bt BT_NXT    &trans        &trans        &trans
-&kp F1  &kp F2   &kp F3   &kp F4   &trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 4  &trans
-                 &trans   &trans   &trans  &trans        &trans        &trans
+&kp F9  &kp F10  &kp F11           &kp F12         &trans        &out OUT_TOG  &trans        &trans        &trans        &bt BT_CLR
+&kp F5  &kp F6   &kp F7            &kp F8          &trans        &bt BT_PRV    &bt BT_NXT    &trans        &trans        &trans
+&kp F1  &kp F2   &kp F3            &kp F4          &trans        &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 4  &trans
+                 &kp LEFT_CONTROL  &kp LEFT_SHIFT  &kp LEFT_ALT  &trans        &trans        &trans
             >;
         };
 
