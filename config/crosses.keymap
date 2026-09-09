@@ -1,17 +1,23 @@
 #include <input/processors/zmk-input-processor-keybind.dtsi>
+
 #include <behaviors.dtsi>
+
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/input_transform.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/pointing.h>
 
 / {
-    chosen { zmk,physical-layout = &gggw_crosses_36_layout; };
+    chosen {
+        zmk,physical-layout = &gggw_crosses_36_layout;
+    };
 
     text_nav: text_nav {
         compatible = "zmk,input-processor-keybind";
         #input-processor-cells = <0>;
         track_remainders;
+
         bindings =
             <&kp LC(RIGHT_ARROW)>,
             <&kp LC(LEFT_ARROW)>,
@@ -27,7 +33,12 @@
         compatible = "zmk,input-processor-keybind";
         #input-processor-cells = <0>;
         track_remainders;
-        bindings = <&kp TAB>, <&kp LS(TAB)>, <&none>, <&none>;
+
+        bindings =
+            <&kp TAB>,
+            <&kp LS(TAB)>,
+            <&none>,
+            <&none>;
 
         tick = <90>;
         wait-ms = <0>;
@@ -38,7 +49,12 @@
         compatible = "zmk,input-processor-keybind";
         #input-processor-cells = <0>;
         track_remainders;
-        bindings = <&kp LC(PAGE_DOWN)>, <&kp LC(PAGE_UP)>, <&none>, <&none>;
+
+        bindings =
+            <&kp LC(PAGE_DOWN)>,
+            <&kp LC(PAGE_UP)>,
+            <&none>,
+            <&none>;
 
         tick = <90>;
         wait-ms = <0>;
@@ -49,7 +65,12 @@
         compatible = "zmk,input-processor-keybind";
         #input-processor-cells = <0>;
         track_remainders;
-        bindings = <&none>, <&none>, <&kp C_VOL_DN>, <&kp C_VOL_UP>;
+
+        bindings =
+            <&none>,
+            <&none>,
+            <&kp C_VOL_DN>,
+            <&kp C_VOL_UP>;
 
         tick = <45>;
         wait-ms = <0>;
@@ -70,7 +91,6 @@
             compatible = "zmk,behavior-hold-tap";
             label = "TAP_PREF_200";
             bindings = <&kp>, <&kp>;
-
             #binding-cells = <2>;
             tapping-term-ms = <200>;
             flavor = "tap-preferred";
@@ -80,7 +100,6 @@
             compatible = "zmk,behavior-hold-tap";
             label = "TAP_PREF_275";
             bindings = <&kp>, <&kp>;
-
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <275>;
@@ -91,6 +110,7 @@
             #binding-cells = <1>;
             wait-ms = <0>;
             tap-ms = <0>;
+
             bindings =
                 <&macro_param_1to1>,
                 <&macro_press>,
@@ -132,6 +152,7 @@
 
         default_layer {
             display-name = "Base";
+
             bindings = <
 &kp Q                       &kp W                     &kp E                     &kp R                  &lt 6 T    &kp Y      &kp U                          &kp I                      &kp O                      &kp P
 &Tap_Pref_200 LEFT_SHIFT A  &Tap_Pref_200 LEFT_WIN S  &Tap_Pref_275 LEFT_ALT D  &Tap_Pref_200 LCTRL F  &lt 7 G    &kp H      &Tap_Pref_200 RIGHT_CONTROL J  &Tap_Pref_275 RIGHT_ALT K  &Tap_Pref_200 RIGHT_WIN L  &Tap_Pref_200 RIGHT_SHIFT SQT
@@ -141,9 +162,10 @@
         };
 
         Mouse_Layer {
-            display-name = "Lower";
+            display-name = "Mouse";
+
             bindings = <
-&none   &none   &none   &none   &none  &kp BACKSPACE  &mkp MB4         &mkp MB4           &kp LS(LG(S))  &kp RS(LG(T))
+&none   &none   &none   &none   &none  &kp BACKSPACE  &mkp MB4         &mkp MB5           &kp LS(LG(S))  &kp RS(LG(T))
 &trans  &trans  &trans  &trans  &none  &kp RET        &mkp LCLK        &mkp RCLK          &mkp MCLK      &none
 &none   &none   &none   &none   &none  &kp RC(X)      &kp RC(C)        &kp RC(V)          &none          &kp LS(LC(A))
                 &none   &none   &none  &kp RIGHT_ALT  &kp RIGHT_SHIFT  &kp RIGHT_CONTROL
@@ -151,7 +173,8 @@
         };
 
         Nav_Layer {
-            display-name = "Raise";
+            display-name = "Nav";
+
             bindings = <
 &none   &none   &kp LC(Z)  &kp LC(Y)  &kp ESC             &kp PG_UP      &kp HOME        &kp UP_ARROW  &kp END          &trans
 &trans  &trans  &trans     &trans     &kp K_CONTEXT_MENU  &kp PAGE_DOWN  &kp LEFT_ARROW  &kp DOWN      &kp RIGHT_ARROW  &trans
@@ -161,7 +184,8 @@
         };
 
         Num_Layer {
-            display-name = "Mouse";
+            display-name = "Num";
+
             bindings = <
 &none  &none  &none  &none  &none  &kp EQUAL  &kp N7  &kp N8   &kp N9  &kp MINUS
 &none  &none  &none  &none  &none  &kp MINUS  &kp N4  &kp N5   &kp N6  &kp FSLH
@@ -171,7 +195,8 @@
         };
 
         Bracket_Layer {
-            display-name = "Mouse";
+            display-name = "Bracket";
+
             bindings = <
 &none  &none  &kp LPAR  &kp RPAR  &kp GRAVE  &none  &none  &none  &none  &none
 &none  &none  &kp LBKT  &kp RBKT  &kp PIPE   &none  &none  &none  &none  &none
@@ -182,6 +207,7 @@
 
         Func_BT_Layer {
             display-name = "FuncBT";
+
             bindings = <
 &kp F9  &kp F10  &kp F11           &kp F12         &trans        &out OUT_TOG  &trans        &trans        &trans        &bt BT_CLR
 &kp F5  &kp F6   &kp F7            &kp F8          &trans        &bt BT_PRV    &bt BT_NXT    &trans        &trans        &trans
@@ -192,6 +218,7 @@
 
         app_nav_layer {
             display-name = "AppNav";
+
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
@@ -202,6 +229,7 @@
 
         context_nav_layer {
             display-name = "ContextNav";
+
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
@@ -212,17 +240,46 @@
     };
 };
 
+/*
+ * Trackball layer reference:
+ *
+ * 1 = Mouse
+ * 2 = Nav
+ * 5 = Func/BT
+ * 6 = App Nav
+ * 7 = Context Nav
+ */
+
+/*
+ * LEFT TRACKBALL
+ *
+ * Default: Mouse movement
+ * Moving the ball temporarily activates Mouse layer 1.
+ * Func/BT layer 5: Volume control.
+ */
 &trackball_peripheral_listener {
-    input-processors = <&zip_xy_to_scroll_mapper>, <&zip_scroll_scaler 1 2>;
+    input-processors = <&zip_temp_layer 1 1000>;
 
     volume_navigation {
-        layers = <4>;
+        layers = <5>;
         input-processors = <&volume_nav>;
     };
 };
 
+/*
+ * RIGHT TRACKBALL
+ *
+ * Default: Scroll
+ * Horizontal scrolling is inverted.
+ * Nav layer 2: Text navigation.
+ * App Nav layer 6: Application navigation.
+ * Context Nav layer 7: Tab/sheet navigation.
+ */
 &trackball_central_listener {
-    input-processors = <&zip_temp_layer 1 400>, <&zip_ble_report_rate_limit>;
+    input-processors =
+        <&zip_xy_to_scroll_mapper>,
+        <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,
+        <&zip_scroll_scaler 1 2>;
 
     text_navigation {
         layers = <2>;
@@ -230,12 +287,12 @@
     };
 
     app_navigation {
-        layers = <5>;
+        layers = <6>;
         input-processors = <&app_nav>;
     };
 
     context_navigation {
-        layers = <6>;
+        layers = <7>;
         input-processors = <&context_nav>;
     };
 };
