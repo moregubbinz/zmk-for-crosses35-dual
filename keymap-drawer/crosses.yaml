@@ -25,19 +25,19 @@ layers:
   - X
   - C
   - V
-  - {t: B, h: Lower}
+  - {t: B, h: Mouse}
   - N
   - M
   - ','
   - .
   - /
   - '~'
-  - {t: '$$mdi:keyboard-space$$', h: Raise}
-  - {t: '$$mdi:keyboard-tab$$', h: Mouse}
+  - {t: '$$mdi:keyboard-space$$', h: Nav}
+  - {t: '$$mdi:keyboard-tab$$', h: Num}
   - {t: '$$mdi:keyboard-return$$', h: FuncBT}
-  - {t: BACKSPACE, h: Mouse}
+  - {t: BACKSPACE, h: Bracket}
   - DEL
-  Lower:
+  Mouse:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
@@ -45,7 +45,7 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - BACKSPACE
   - '&mkp MB4'
-  - '&mkp MB4'
+  - '&mkp MB5'
   - $$mdi:apple-keyboard-shift$$+Gui+S
   - $$mdi:apple-keyboard-shift$$+Gui+T
   - {t: '$$mdi:transfer$$', type: trans}
@@ -74,7 +74,7 @@ layers:
   - RIGHT ALT
   - RIGHT SHIFT
   - RIGHT CONTROL
-  Raise:
+  Nav:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - Ctl+Z
@@ -111,7 +111,44 @@ layers:
   - $$mdi:keyboard-return$$
   - BACKSPACE
   - DEL
-  Mouse:
+  Num:
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - '='
+  - '7'
+  - '8'
+  - '9'
+  - '-'
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - '-'
+  - '4'
+  - '5'
+  - '6'
+  - /
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - +
+  - '1'
+  - '2'
+  - '3'
+  - '*'
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: held}
+  - $$mdi:keyboard-return$$
+  - '0'
+  - .
+  Bracket:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - (
@@ -144,7 +181,7 @@ layers:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: held}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: held}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
