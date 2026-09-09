@@ -13,14 +13,31 @@
         zmk,physical-layout = &gggw_crosses_36_layout;
     };
 
+    /*
+     * ============================================================
+     * TRACKBALL INPUT PROCESSORS
+     * ============================================================
+     */
+
+    /*
+     * NAV
+     *
+     * Right trackball while holding Space:
+     *   Right = Right Arrow
+     *   Left  = Left Arrow
+     *   Up    = Up Arrow
+     *   Down  = Down Arrow
+     *
+     * Hold Ctrl manually for Ctrl+Arrow word/cell-edge navigation.
+     */
     text_nav: text_nav {
         compatible = "zmk,input-processor-keybind";
         #input-processor-cells = <0>;
         track_remainders;
 
         bindings =
-            <&kp LC(RIGHT_ARROW)>,
-            <&kp LC(LEFT_ARROW)>,
+            <&kp RIGHT_ARROW>,
+            <&kp LEFT_ARROW>,
             <&kp UP_ARROW>,
             <&kp DOWN_ARROW>;
 
@@ -29,6 +46,17 @@
         tap-ms = <10>;
     };
 
+    /*
+     * APP NAV
+     *
+     * Right trackball while holding T:
+     *   Right = Tab
+     *   Left  = Shift+Tab
+     *
+     * T also holds Left Alt, producing:
+     *   Right = Alt+Tab
+     *   Left  = Alt+Shift+Tab
+     */
     app_nav: app_nav {
         compatible = "zmk,input-processor-keybind";
         #input-processor-cells = <0>;
@@ -45,6 +73,13 @@
         tap-ms = <10>;
     };
 
+    /*
+     * CONTEXT NAV
+     *
+     * Right trackball while holding G:
+     *   Right = Ctrl+Page Down
+     *   Left  = Ctrl+Page Up
+     */
     context_nav: context_nav {
         compatible = "zmk,input-processor-keybind";
         #input-processor-cells = <0>;
@@ -61,6 +96,13 @@
         tap-ms = <10>;
     };
 
+    /*
+     * VOLUME
+     *
+     * Left trackball while holding Func/BT layer:
+     *   Down = Volume Down
+     *   Up   = Volume Up
+     */
     volume_nav: volume_nav {
         compatible = "zmk,input-processor-keybind";
         #input-processor-cells = <0>;
@@ -77,37 +119,30 @@
         tap-ms = <5>;
     };
 
-    behaviors {
-        as: auto_shift {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping_term_ms = <200>;
-            quick_tap_ms = <0>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
-        };
 
-        Tap_Pref_200: Tap_Pref_200 {
-            compatible = "zmk,behavior-hold-tap";
-            label = "TAP_PREF_200";
-            bindings = <&kp>, <&kp>;
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            flavor = "tap-preferred";
-        };
+    /*
+     * ============================================================
+     * MACROS
+     * ============================================================
+     */
 
-        Tap_Pref_275: Tap_Pref_275 {
-            compatible = "zmk,behavior-hold-tap";
-            label = "TAP_PREF_275";
-            bindings = <&kp>, <&kp>;
-            #binding-cells = <2>;
-            flavor = "hold-preferred";
-            tapping-term-ms = <275>;
-        };
-
+    macros {
+        /*
+         * APP NAV HOLD
+         *
+         * Parameter = layer number.
+         *
+         * On hold:
+         *   1. Activate App Nav layer.
+         *   2. Hold Left Alt.
+         *   3. Wait until T is released.
+         *   4. Release Left Alt.
+         *   5. Deactivate App Nav layer.
+         */
         app_hold: app_hold {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
+
             wait-ms = <0>;
             tap-ms = <0>;
 
@@ -115,15 +150,80 @@
                 <&macro_param_1to1>,
                 <&macro_press>,
                 <&mo MACRO_PLACEHOLDER>,
-                <&macro_press>,
                 <&kp LALT>,
+
                 <&macro_pause_for_release>,
+
                 <&macro_release>,
-                <&kp LALT &macro_param_1to1>,
-                <&macro_release>,
+                <&kp LALT>,
+                <&macro_param_1to1>,
                 <&mo MACRO_PLACEHOLDER>;
         };
     };
+
+
+    /*
+     * ============================================================
+     * KEY BEHAVIORS
+     * ============================================================
+     */
+
+    behaviors {
+        as: auto_shift {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+
+            tapping_term_ms = <200>;
+            quick_tap_ms = <0>;
+            flavor = "tap-preferred";
+
+            bindings = <&kp>, <&kp>;
+        };
+
+        Tap_Pref_200: Tap_Pref_200 {
+            compatible = "zmk,behavior-hold-tap";
+            label = "TAP_PREF_200";
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+
+            bindings = <&kp>, <&kp>;
+        };
+
+        Tap_Pref_275: Tap_Pref_275 {
+            compatible = "zmk,behavior-hold-tap";
+            label = "TAP_PREF_275";
+
+            #binding-cells = <2>;
+            tapping-term-ms = <275>;
+            flavor = "hold-preferred";
+
+            bindings = <&kp>, <&kp>;
+        };
+
+        /*
+         * T:
+         *   Tap  = T
+         *   Hold = app_hold using layer 6
+         */
+        app_nav_tap: app_nav_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+
+            bindings = <&app_hold>, <&kp>;
+        };
+    };
+
+
+    /*
+     * ============================================================
+     * COMBOS
+     * ============================================================
+     */
 
     combos {
         compatible = "zmk,combos";
@@ -144,34 +244,62 @@
         };
     };
 
-    macros {
-    };
+
+    /*
+     * ============================================================
+     * KEYMAP
+     *
+     * Layer 0 = Base
+     * Layer 1 = Mouse
+     * Layer 2 = Nav
+     * Layer 3 = Num
+     * Layer 4 = Bracket
+     * Layer 5 = Func / BT
+     * Layer 6 = App Nav
+     * Layer 7 = Context Nav
+     * ============================================================
+     */
 
     keymap {
         compatible = "zmk,keymap";
 
+
+        /*
+         * LAYER 0
+         * BASE
+         */
         default_layer {
             display-name = "Base";
 
             bindings = <
-&kp Q                       &kp W                     &kp E                     &kp R                  &lt 6 T    &kp Y      &kp U                          &kp I                      &kp O                      &kp P
-&Tap_Pref_200 LEFT_SHIFT A  &Tap_Pref_200 LEFT_WIN S  &Tap_Pref_275 LEFT_ALT D  &Tap_Pref_200 LCTRL F  &lt 7 G    &kp H      &Tap_Pref_200 RIGHT_CONTROL J  &Tap_Pref_275 RIGHT_ALT K  &Tap_Pref_200 RIGHT_WIN L  &Tap_Pref_200 RIGHT_SHIFT SQT
-&kp Z                       &kp X                     &kp C                     &kp V                  &lt 1 B    &kp N      &kp M                          &kp COMMA                  &kp DOT                    &kp FSLH
-                                                      &kp TILDE                 &lt 2 SPACE            &lt 3 TAB  &lt 5 RET  &lt 4 BACKSPACE                &kp DEL
+&kp Q                       &kp W                     &kp E                     &kp R                  &app_nav_tap 6 T  &kp Y      &kp U                          &kp I                      &kp O                      &kp P
+&Tap_Pref_200 LEFT_SHIFT A  &Tap_Pref_200 LEFT_WIN S  &Tap_Pref_275 LEFT_ALT D  &Tap_Pref_200 LCTRL F  &lt 7 G            &kp H      &Tap_Pref_200 RIGHT_CONTROL J  &Tap_Pref_275 RIGHT_ALT K  &Tap_Pref_200 RIGHT_WIN L  &Tap_Pref_200 RIGHT_SHIFT SQT
+&kp Z                       &kp X                     &kp C                     &kp V                  &lt 1 B            &kp N      &kp M                          &kp COMMA                  &kp DOT                    &kp FSLH
+                                                      &kp TILDE                 &lt 2 SPACE            &lt 3 TAB          &lt 5 RET  &lt 4 BACKSPACE                &kp DEL
             >;
         };
 
+
+        /*
+         * LAYER 1
+         * MOUSE
+         */
         Mouse_Layer {
             display-name = "Mouse";
 
             bindings = <
-&none   &none   &none   &none   &none  &kp BACKSPACE  &mkp MB4         &mkp MB5           &kp LS(LG(S))  &kp RS(LG(T))
+&none   &none   &none   &none   &none  &kp BACKSPACE  &mkp MB4         &mkp MB4           &kp LS(LG(S))  &kp RS(LG(T))
 &trans  &trans  &trans  &trans  &none  &kp RET        &mkp LCLK        &mkp RCLK          &mkp MCLK      &none
 &none   &none   &none   &none   &none  &kp RC(X)      &kp RC(C)        &kp RC(V)          &none          &kp LS(LC(A))
                 &none   &none   &none  &kp RIGHT_ALT  &kp RIGHT_SHIFT  &kp RIGHT_CONTROL
             >;
         };
 
+
+        /*
+         * LAYER 2
+         * NAVIGATION
+         */
         Nav_Layer {
             display-name = "Nav";
 
@@ -183,6 +311,11 @@
             >;
         };
 
+
+        /*
+         * LAYER 3
+         * NUMBERS
+         */
         Num_Layer {
             display-name = "Num";
 
@@ -194,6 +327,11 @@
             >;
         };
 
+
+        /*
+         * LAYER 4
+         * BRACKETS / SYMBOLS
+         */
         Bracket_Layer {
             display-name = "Bracket";
 
@@ -205,6 +343,11 @@
             >;
         };
 
+
+        /*
+         * LAYER 5
+         * FUNCTIONS / BLUETOOTH
+         */
         Func_BT_Layer {
             display-name = "FuncBT";
 
@@ -216,6 +359,11 @@
             >;
         };
 
+
+        /*
+         * LAYER 6
+         * APP NAVIGATION
+         */
         app_nav_layer {
             display-name = "AppNav";
 
@@ -227,6 +375,11 @@
             >;
         };
 
+
+        /*
+         * LAYER 7
+         * CONTEXT NAVIGATION
+         */
         context_nav_layer {
             display-name = "ContextNav";
 
@@ -240,25 +393,33 @@
     };
 };
 
-/*
- * Trackball layer reference:
- *
- * 1 = Mouse
- * 2 = Nav
- * 5 = Func/BT
- * 6 = App Nav
- * 7 = Context Nav
- */
 
 /*
+ * ============================================================
  * LEFT TRACKBALL
+ * ============================================================
  *
- * Default: Mouse movement
- * Moving the ball temporarily activates Mouse layer 1.
- * Func/BT layer 5: Volume control.
+ * DEFAULT
+ *   Mouse pointer movement.
+ *
+ * DIRECTION
+ *   Horizontal X movement is inverted.
+ *   Vertical Y movement is unchanged.
+ *
+ * AUTOMOUSE
+ *   Trackball movement temporarily activates Mouse layer 1.
+ *   Timeout = 1000 ms.
+ *
+ * FUNC / BT LAYER 5
+ *   Vertical movement controls volume.
+ *
+ * BLE report limiting for the peripheral trackball is handled
+ * in crosses_left.overlay.
  */
 &trackball_peripheral_listener {
-    input-processors = <&zip_temp_layer 1 1000>;
+    input-processors =
+        <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,
+        <&zip_temp_layer 1 1000>;
 
     volume_navigation {
         layers = <5>;
@@ -266,20 +427,42 @@
     };
 };
 
+
 /*
+ * ============================================================
  * RIGHT TRACKBALL
+ * ============================================================
  *
- * Default: Scroll
- * Horizontal scrolling is inverted.
- * Nav layer 2: Text navigation.
- * App Nav layer 6: Application navigation.
- * Context Nav layer 7: Tab/sheet navigation.
+ * DEFAULT
+ *   Scrolling.
+ *
+ * DIRECTION
+ *   Horizontal scrolling is unchanged.
+ *   Vertical scrolling is inverted.
+ *
+ * NAV LAYER 2
+ *   Right = Right Arrow
+ *   Left  = Left Arrow
+ *   Up    = Up Arrow
+ *   Down  = Down Arrow
+ *
+ *   Hold Ctrl manually if Ctrl+Arrow navigation is wanted.
+ *
+ * APP NAV LAYER 6
+ *   Hold T to hold Left Alt and activate layer 6.
+ *   Right = Alt+Tab
+ *   Left  = Alt+Shift+Tab
+ *
+ * CONTEXT NAV LAYER 7
+ *   Right = Ctrl+Page Down
+ *   Left  = Ctrl+Page Up
  */
 &trackball_central_listener {
     input-processors =
         <&zip_xy_to_scroll_mapper>,
-        <&zip_scroll_transform INPUT_TRANSFORM_X_INVERT>,
-        <&zip_scroll_scaler 1 2>;
+        <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>,
+        <&zip_scroll_scaler 1 2>,
+        <&zip_ble_report_rate_limit>;
 
     text_navigation {
         layers = <2>;
