@@ -1,24 +1,19 @@
 #include <input/processors/zmk-input-processor-keybind.dtsi>
-
-#include <behaviors.dtsi>
-
-#include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/input_transform.h>
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/pointing.h>
 
 / {
-    chosen {
-        zmk,physical-layout = &gggw_crosses_36_layout;
-    };
+    chosen { zmk,physical-layout = &gggw_crosses_36_layout; };
 
     /*
      * ============================================================
      * TRACKBALL INPUT PROCESSORS
      * ============================================================
      */
-
     /*
      * NAV
      *
@@ -30,11 +25,11 @@
      *
      * Hold Ctrl manually for Ctrl+Arrow word/cell-edge navigation.
      */
+
     text_nav: text_nav {
         compatible = "zmk,input-processor-keybind";
         #input-processor-cells = <0>;
         track_remainders;
-
         bindings =
             <&kp RIGHT_ARROW>,
             <&kp LEFT_ARROW>,
@@ -57,16 +52,12 @@
      *   Right = Alt+Tab
      *   Left  = Alt+Shift+Tab
      */
+
     app_nav: app_nav {
         compatible = "zmk,input-processor-keybind";
         #input-processor-cells = <0>;
         track_remainders;
-
-        bindings =
-            <&kp TAB>,
-            <&kp LS(TAB)>,
-            <&none>,
-            <&none>;
+        bindings = <&kp TAB>, <&kp LS(TAB)>, <&none>, <&none>;
 
         tick = <90>;
         wait-ms = <0>;
@@ -80,16 +71,12 @@
      *   Right = Ctrl+Page Down
      *   Left  = Ctrl+Page Up
      */
+
     context_nav: context_nav {
         compatible = "zmk,input-processor-keybind";
         #input-processor-cells = <0>;
         track_remainders;
-
-        bindings =
-            <&kp LC(PAGE_DOWN)>,
-            <&kp LC(PAGE_UP)>,
-            <&none>,
-            <&none>;
+        bindings = <&kp LC(PAGE_DOWN)>, <&kp LC(PAGE_UP)>, <&none>, <&none>;
 
         tick = <90>;
         wait-ms = <0>;
@@ -103,22 +90,17 @@
      *   Down = Volume Down
      *   Up   = Volume Up
      */
+
     volume_nav: volume_nav {
         compatible = "zmk,input-processor-keybind";
         #input-processor-cells = <0>;
         track_remainders;
-
-        bindings =
-            <&none>,
-            <&none>,
-            <&kp C_VOL_DN>,
-            <&kp C_VOL_UP>;
+        bindings = <&none>, <&none>, <&kp C_VOL_DN>, <&kp C_VOL_UP>;
 
         tick = <45>;
         wait-ms = <0>;
         tap-ms = <5>;
     };
-
 
     /*
      * ============================================================
@@ -139,28 +121,25 @@
          *   4. Release Left Alt.
          *   5. Deactivate App Nav layer.
          */
+
         app_hold: app_hold {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
-
             wait-ms = <0>;
             tap-ms = <0>;
-
             bindings =
                 <&macro_param_1to1>,
                 <&macro_press>,
                 <&mo MACRO_PLACEHOLDER>,
+                <&macro_press>,
                 <&kp LALT>,
-
                 <&macro_pause_for_release>,
-
                 <&macro_release>,
-                <&kp LALT>,
-                <&macro_param_1to1>,
+                <&kp LALT &macro_param_1to1>,
+                <&macro_release>,
                 <&mo MACRO_PLACEHOLDER>;
         };
     };
-
 
     /*
      * ============================================================
@@ -172,33 +151,27 @@
         as: auto_shift {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-
             tapping_term_ms = <200>;
             quick_tap_ms = <0>;
             flavor = "tap-preferred";
-
             bindings = <&kp>, <&kp>;
         };
 
         Tap_Pref_200: Tap_Pref_200 {
             compatible = "zmk,behavior-hold-tap";
             label = "TAP_PREF_200";
-
             #binding-cells = <2>;
             tapping-term-ms = <200>;
             flavor = "tap-preferred";
-
             bindings = <&kp>, <&kp>;
         };
 
         Tap_Pref_275: Tap_Pref_275 {
             compatible = "zmk,behavior-hold-tap";
             label = "TAP_PREF_275";
-
             #binding-cells = <2>;
             tapping-term-ms = <275>;
             flavor = "hold-preferred";
-
             bindings = <&kp>, <&kp>;
         };
 
@@ -207,17 +180,7 @@
          *   Tap  = T
          *   Hold = app_hold using layer 6
          */
-        app_nav_tap: app_nav_tap {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-
-            tapping-term-ms = <200>;
-            flavor = "tap-preferred";
-
-            bindings = <&app_hold>, <&kp>;
-        };
     };
-
 
     /*
      * ============================================================
@@ -244,7 +207,6 @@
         };
     };
 
-
     /*
      * ============================================================
      * KEYMAP
@@ -263,46 +225,43 @@
     keymap {
         compatible = "zmk,keymap";
 
-
         /*
          * LAYER 0
          * BASE
          */
+
         default_layer {
             display-name = "Base";
-
             bindings = <
 &kp Q                       &kp W                     &kp E                     &kp R                  &app_nav_tap 6 T  &kp Y      &kp U                          &kp I                      &kp O                      &kp P
-&Tap_Pref_200 LEFT_SHIFT A  &Tap_Pref_200 LEFT_WIN S  &Tap_Pref_275 LEFT_ALT D  &Tap_Pref_200 LCTRL F  &lt 7 G            &kp H      &Tap_Pref_200 RIGHT_CONTROL J  &Tap_Pref_275 RIGHT_ALT K  &Tap_Pref_200 RIGHT_WIN L  &Tap_Pref_200 RIGHT_SHIFT SQT
-&kp Z                       &kp X                     &kp C                     &kp V                  &lt 1 B            &kp N      &kp M                          &kp COMMA                  &kp DOT                    &kp FSLH
-                                                      &kp TILDE                 &lt 2 SPACE            &lt 3 TAB          &lt 5 RET  &lt 4 BACKSPACE                &kp DEL
+&Tap_Pref_200 LEFT_SHIFT A  &Tap_Pref_200 LEFT_WIN S  &Tap_Pref_275 LEFT_ALT D  &Tap_Pref_200 LCTRL F  &lt 7 G           &kp H      &Tap_Pref_200 RIGHT_CONTROL J  &Tap_Pref_275 RIGHT_ALT K  &Tap_Pref_200 RIGHT_WIN L  &Tap_Pref_200 RIGHT_SHIFT SQT
+&kp Z                       &kp X                     &kp C                     &kp V                  &lt 1 B           &kp N      &kp M                          &kp COMMA                  &kp DOT                    &kp FSLH
+                                                      &kp TILDE                 &lt 2 SPACE            &lt 3 TAB         &lt 5 RET  &lt 4 BACKSPACE                &kp DEL
             >;
         };
-
 
         /*
          * LAYER 1
          * MOUSE
          */
-        Mouse_Layer {
-            display-name = "Mouse";
 
+        Mouse_Layer {
+            display-name = "Lower";
             bindings = <
-&none   &none   &none   &none   &none  &kp BACKSPACE  &mkp MB4         &mkp MB4           &kp LS(LG(S))  &kp RS(LG(T))
-&trans  &trans  &trans  &trans  &none  &kp RET        &mkp LCLK        &mkp RCLK          &mkp MCLK      &none
-&none   &none   &none   &none   &none  &kp RC(X)      &kp RC(C)        &kp RC(V)          &none          &kp LS(LC(A))
-                &none   &none   &none  &kp RIGHT_ALT  &kp RIGHT_SHIFT  &kp RIGHT_CONTROL
+&none   &none      &mkp MB4   &mkp MB5   &kp LS(LG(S))  &none  &none   &none   &none   &none
+&trans  &trans     &trans     &trans     &kp LS(LG(T))  &none  &trans  &trans  &trans  &trans
+&none   &kp LC(X)  &kp LC(C)  &kp LC(V)  &none          &none  &none   &none   &none   &none
+                   &mkp RCLK  &mkp LCLK  &mkp MCLK      &none  &none   &none
             >;
         };
-
 
         /*
          * LAYER 2
          * NAVIGATION
          */
+
         Nav_Layer {
             display-name = "Nav";
-
             bindings = <
 &none   &none   &kp LC(Z)  &kp LC(Y)  &kp ESC             &kp PG_UP      &kp HOME        &kp UP_ARROW  &kp END          &trans
 &trans  &trans  &trans     &trans     &kp K_CONTEXT_MENU  &kp PAGE_DOWN  &kp LEFT_ARROW  &kp DOWN      &kp RIGHT_ARROW  &trans
@@ -311,14 +270,13 @@
             >;
         };
 
-
         /*
          * LAYER 3
          * NUMBERS
          */
+
         Num_Layer {
             display-name = "Num";
-
             bindings = <
 &none  &none  &none  &none  &none  &kp EQUAL  &kp N7  &kp N8   &kp N9  &kp MINUS
 &none  &none  &none  &none  &none  &kp MINUS  &kp N4  &kp N5   &kp N6  &kp FSLH
@@ -327,14 +285,13 @@
             >;
         };
 
-
         /*
          * LAYER 4
          * BRACKETS / SYMBOLS
          */
+
         Bracket_Layer {
             display-name = "Bracket";
-
             bindings = <
 &none  &none  &kp LPAR  &kp RPAR  &kp GRAVE  &none  &none  &none  &none  &none
 &none  &none  &kp LBKT  &kp RBKT  &kp PIPE   &none  &none  &none  &none  &none
@@ -343,14 +300,13 @@
             >;
         };
 
-
         /*
          * LAYER 5
          * FUNCTIONS / BLUETOOTH
          */
+
         Func_BT_Layer {
             display-name = "FuncBT";
-
             bindings = <
 &kp F9  &kp F10  &kp F11           &kp F12         &trans        &out OUT_TOG  &trans        &trans        &trans        &bt BT_CLR
 &kp F5  &kp F6   &kp F7            &kp F8          &trans        &bt BT_PRV    &bt BT_NXT    &trans        &trans        &trans
@@ -359,14 +315,13 @@
             >;
         };
 
-
         /*
          * LAYER 6
          * APP NAVIGATION
          */
+
         app_nav_layer {
             display-name = "AppNav";
-
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
@@ -375,14 +330,13 @@
             >;
         };
 
-
         /*
          * LAYER 7
          * CONTEXT NAVIGATION
          */
+
         context_nav_layer {
             display-name = "ContextNav";
-
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
@@ -392,7 +346,6 @@
         };
     };
 };
-
 
 /*
  * ============================================================
@@ -416,6 +369,7 @@
  * BLE report limiting for the peripheral trackball is handled
  * in crosses_left.overlay.
  */
+
 &trackball_peripheral_listener {
     input-processors =
         <&zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)>,
@@ -426,7 +380,6 @@
         input-processors = <&volume_nav>;
     };
 };
-
 
 /*
  * ============================================================
@@ -457,6 +410,7 @@
  *   Right = Ctrl+Page Down
  *   Left  = Ctrl+Page Up
  */
+
 &trackball_central_listener {
     input-processors =
         <&zip_xy_to_scroll_mapper>,
