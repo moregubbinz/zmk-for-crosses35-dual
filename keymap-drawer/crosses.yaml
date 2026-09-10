@@ -5,7 +5,7 @@ layers:
   - W
   - E
   - R
-  - {t: T, h: '&app_hold 6'}
+  - '&app_nav_tap 6 T'
   - Y
   - U
   - I
@@ -25,7 +25,7 @@ layers:
   - X
   - C
   - V
-  - {t: B, h: Mouse}
+  - {t: B, h: Lower}
   - N
   - M
   - ','
@@ -37,43 +37,43 @@ layers:
   - {t: '$$mdi:keyboard-return$$', h: FuncBT}
   - {t: BACKSPACE, h: Bracket}
   - DEL
-  Mouse:
+  Lower:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - BACKSPACE
   - '&mkp MB4'
-  - '&mkp MB4'
+  - '&mkp MB5'
   - $$mdi:apple-keyboard-shift$$+Gui+S
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
+  - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:apple-keyboard-shift$$+Gui+T
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - $$mdi:keyboard-return$$
-  - {t: '$$mdi:mouse-left-click$$', h: left}
+  - Ctl+X
+  - Ctl+C
+  - Ctl+V
+  - {t: '$$mdi:minus-circle-outline$$', type: held}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
+  - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:mouse-right-click$$', h: right}
+  - {t: '$$mdi:mouse-left-click$$', h: left}
   - {t: '$$mdi:mouse$$', h: middle}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: held}
-  - Ctl+X
-  - Ctl+C
-  - Ctl+V
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - $$mdi:apple-keyboard-shift$$+Ctl+A
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - RIGHT ALT
-  - RIGHT SHIFT
-  - RIGHT CONTROL
   Nav:
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
