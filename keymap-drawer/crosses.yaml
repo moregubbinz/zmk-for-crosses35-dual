@@ -25,7 +25,7 @@ layers:
   - X
   - C
   - V
-  - {t: B, h: Lower}
+  - B
   - {t: N, h: Lower}
   - M
   - ','
@@ -62,8 +62,8 @@ layers:
   - Ctl+X
   - Ctl+C
   - Ctl+V
-  - {t: Gui+V, type: held}
-  - {t: '$$mdi:minus-circle-outline$$', type: held alternate}
+  - Gui+V
+  - {t: '$$mdi:minus-circle-outline$$', type: held}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
