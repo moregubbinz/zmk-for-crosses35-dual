@@ -199,7 +199,7 @@
             bindings = <&kp>, <&kp>;
 
             #binding-cells = <2>;
-            flavor = "hold-preferred";
+            flavor = "tap-preferred";
             tapping-term-ms = <275>;
         };
 
@@ -216,6 +216,16 @@
             tapping-term-ms = <200>;
             flavor = "tap-preferred";
             bindings = <&app_hold>, <&kp>;
+        };
+
+        new_behavior: new_behavior {
+            compatible = "zmk,behavior-hold-tap";
+            label = "NEW_BEHAVIOR";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
         };
     };
 
@@ -288,7 +298,7 @@
 &none   &none      &mkp MB4   &mkp MB5   &kp LS(LG(S))  &none  &none   &none   &none   &none
 &trans  &trans     &trans     &trans     &kp LS(LG(T))  &none  &trans  &trans  &trans  &trans
 &none   &kp LC(X)  &kp LC(C)  &kp LC(V)  &kp LG(V)      &none  &none   &none   &none   &none
-                   &mkp RCLK  &mkp LCLK  &mkp MCLK      &none  &none   &none
+                   &mkp MCLK  &mkp LCLK  &mkp RCLK      &none  &none   &none
             >;
         };
 
